@@ -13,7 +13,7 @@ def read_file(filename):
     n, m = map(int, lines[0].split())
 
     # Find the "-" separating Down and Right
-    separator = lines.index("-")
+    separator = lines.index("-") # .index() returns the position of "-" in the list lines 
 
     # Read Down matrix
     down = [] # a list of lists

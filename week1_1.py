@@ -14,6 +14,8 @@ def dp_change(money, coins):
     #min_num_coins[2] = minimum coins needed to make 2 ...
     #min_num_coins[6] = minimum coins needed to make 6
     min_num_coins = [0] * (money + 1)
+    backtrack = [str(0)] * (money + 1)
+
 
     # Solve the problem for each amount from 1 to 'money'
     for m in range(1, money + 1):
@@ -42,11 +44,15 @@ def dp_change(money, coins):
                     # If this is a better solution, save it
                     # as the new minimum number of coins for m
                     min_num_coins[m] = min_num_coins[m - coin] + 1
+                    backtrack[m] = str(coin) + " " + backtrack[m-coin]
 
     # Return the minimum number of coins needed to make 'money'
-    return min_num_coins[money]
+    return min_num_coins[money], str(backtrack[money])
 
-coins = [15, 12, 8, 6, 5, 3, 1]
-money = 18731
+coins = [1, 4, 5]
+money = 11
 
-print(dp_change(money, coins))
+min_num_coins, list_of_coins = dp_change(money, coins)
+print(min_num_coins)
+print(list_of_coins[:-1])
+
